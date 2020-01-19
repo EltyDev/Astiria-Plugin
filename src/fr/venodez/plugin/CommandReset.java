@@ -14,13 +14,22 @@ import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.factions.entity.MPlayer;
 
+
+
 public class CommandReset implements CommandExecutor {
+	
+	public static ArrayList<String> list = new ArrayList<String>();
+	public static List<String> getFrozen() {
+		
+		return list;
+	}
 
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		
 		if (cmd.getName().equalsIgnoreCase("reset")) {
 			
+			list.clear();
 			for (Faction faction : FactionColl.get().getAll()) {
 				
 				if (faction.getName() != "WarZone" || faction.getName() != "SafeZone") {
@@ -29,13 +38,12 @@ public class CommandReset implements CommandExecutor {
 				}
 			}
 			
-			HashMap<String, Boolean> clear = new HashMap<String, Boolean>();
 			for (Player player : Bukkit.getOnlinePlayers()) {
 				
 				player.getInventory().clear();
 				player.updateInventory();
-				clear.put(player.getName(), true);
-				
+				list.add(player.getName());
+			
 			}
 		}
 		
