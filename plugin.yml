@@ -1,0 +1,12 @@
+name: Astria-Plugin
+version: 1.0
+author: Venodez
+main: fr.venodez.plugin.Main
+commands:
+  reset:
+    description: &ePermet de faire un reset du faction
+    permission: reset.use
+  shop:
+    description: &ePermet d'ouvrir le shop
+    permission: shop.use
+depend: [Factions]
