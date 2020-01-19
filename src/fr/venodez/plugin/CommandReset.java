@@ -12,7 +12,6 @@ import org.bukkit.entity.Player;
 
 import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.FactionColl;
-import com.massivecraft.factions.entity.MPlayer;
 
 public class CommandReset implements CommandExecutor {
 	
