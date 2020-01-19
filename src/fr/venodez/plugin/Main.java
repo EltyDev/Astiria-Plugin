@@ -10,14 +10,18 @@ import org.bukkit.plugin.java.JavaPlugin;
 
 public final class Main extends JavaPlugin {
 	
-	public List<String> list = CommandReset.getFrozen();
+	public static List<String> list = new ArrayList<String>();
+	public static List<String> getFrozen() {
+		
+		return list;
+	}
 	
 	@Override
 	public void onEnable() {
 		getCommand("reset").setExecutor(new CommandReset());
 		getCommand("shop").setExecutor(new CommandShop());
 		getServer().getPluginManager().registerEvents(new Event(), this);
-		List<String> list = getConfig().getStringList("Cleared Player");
+		list = getConfig().getStringList("Cleared Player");
 	}
 	
 	@Override

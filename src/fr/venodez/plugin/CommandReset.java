@@ -14,16 +14,10 @@ import com.massivecraft.factions.entity.Faction;
 import com.massivecraft.factions.entity.FactionColl;
 import com.massivecraft.factions.entity.MPlayer;
 
-
-
 public class CommandReset implements CommandExecutor {
 	
-	public static ArrayList<String> list = new ArrayList<String>();
-	public static List<String> getFrozen() {
-		
-		return list;
-	}
-
+	public List<String> list = Main.getFrozen();
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		

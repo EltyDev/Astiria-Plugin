@@ -69,14 +69,14 @@ public class Event implements Listener {
 	@EventHandler
 	public void onJoin(PlayerJoinEvent event) {
 		
-		List<String> list = CommandReset.getFrozen();
+		List<String> list = Main.getFrozen();
 		Player player = event.getPlayer();
-		if (!list.contains(player.getName()) && list.isEmpty()) {	
+		System.out.println(list);
+		if (!list.contains(player.getName())) {
 			
 			player.getInventory().clear();
 			player.updateInventory();
 			list.add(player.getName());
-			
 		}
 	}
 }
