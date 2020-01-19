@@ -71,7 +71,7 @@ public class Event implements Listener {
 		
 		List<String> list = CommandReset.getFrozen();
 		Player player = event.getPlayer();
-		if (!list.contains(player.getName()) && list != null) {	
+		if (!list.contains(player.getName()) && list.isEmpty()) {	
 			
 			player.getInventory().clear();
 			player.updateInventory();
