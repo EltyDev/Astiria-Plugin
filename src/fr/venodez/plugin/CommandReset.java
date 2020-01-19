@@ -1,6 +1,7 @@
 package fr.venodez.plugin;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -28,6 +29,14 @@ public class CommandReset implements CommandExecutor {
 				}
 			}
 			
+			HashMap<String, Boolean> clear = new HashMap<String, Boolean>();
+			for (Player player : Bukkit.getOnlinePlayers()) {
+				
+				player.getInventory().clear();
+				player.updateInventory();
+				clear.put(player.getName(), true);
+				
+			}
 		}
 		
 		return false;
