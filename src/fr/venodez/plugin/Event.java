@@ -27,9 +27,9 @@ public class Event implements Listener {
 		if (inventory.getName().equalsIgnoreCase("§eShop")) {
 			
 			event.setCancelled(true);
-			if (item.getType() == Material.TNT) {
+			if (item.getType() == Material.TNT && item.hasItemMeta() && item.getItemMeta().getDisplayName() == "§cPillage") {
 			
-				Inventory gui = Bukkit.createInventory(null, 9, ChatColor.DARK_RED + "Pillage");
+				Inventory gui = Bukkit.createInventory(null, 9, "§cPillage");
 				ItemStack tnt = new ItemStack (Material.TNT, 16);
 				ItemMeta mTnt = tnt.getItemMeta();
 				mTnt.setDisplayName("§7§l16x Tnt");
@@ -46,11 +46,11 @@ public class Event implements Listener {
 				wither.setItemMeta(mWither);
 				ItemStack soulsand = new ItemStack (Material.SOUL_SAND, 4);
 				ItemMeta mSoulsand = soulsand.getItemMeta();
-				mSoulsand.setDisplayName("§7§l4 Soulsands");
+				mSoulsand.setDisplayName("§7§l4x Soulsands");
 				soulsand.setItemMeta(mSoulsand);
 				ItemStack enderpearl = new ItemStack (Material.ENDER_PEARL, 16);
 				ItemMeta mEnderpearl = enderpearl.getItemMeta();
-				mEnderpearl.setDisplayName("§7§l16 Enderpearls");
+				mEnderpearl.setDisplayName("§7§l16x Enderpearls");
 				enderpearl.setItemMeta(mEnderpearl);
 				gui.setItem(0, bGlass);
 				gui.setItem(1, rGlass);
@@ -62,7 +62,22 @@ public class Event implements Listener {
 				gui.setItem(7, rGlass);
 				gui.setItem(8, bGlass);
 				player.openInventory(gui);
+			} 
+			
+			else if (item.getType() == Material.SEEDS && item.hasItemMeta() && item.getItemMeta().getDisplayName() == "§2Agriculture") {
+				
+				Inventory gui = Bukkit.createInventory(null, 9, "§2Agriculture");
+				ItemStack wheat = new ItemStack (Material.WHEAT);
+				ItemMeta mWheat = wheat.getItemMeta();
+				mWheat.setDisplayName("§7§l16x blés");
+				wheat.setItemMeta(mWheat);
+				ItemStack carotte = new ItemStack(Material.CARROT_ITEM);
+				ItemMeta mCarotte = carotte.getItemMeta();
+				mCarotte.setDisplayName("§7§l16x Carottes");
+				carotte.setItemMeta(mCarotte);
+				
 			}
+			
 		}
 	}
 	

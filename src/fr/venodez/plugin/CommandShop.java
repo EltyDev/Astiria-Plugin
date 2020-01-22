@@ -29,7 +29,7 @@ public class CommandShop implements CommandExecutor {
 			pillage.setItemMeta(mPillage);
 			ItemStack agriculture = new ItemStack (Material.SEEDS);
 			ItemMeta mAgriculture  = agriculture.getItemMeta();
-			mAgriculture.setDisplayName("§bAgriculture");
+			mAgriculture.setDisplayName("§2Agriculture");
 			agriculture.setItemMeta(mAgriculture);
 			ItemStack alchimie = new ItemStack (Material.POTION, 1, (short) 8229);
 			ItemMeta mAlchimie  = alchimie.getItemMeta();
