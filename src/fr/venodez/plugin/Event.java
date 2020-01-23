@@ -69,12 +69,20 @@ public class Event implements Listener {
 				Inventory gui = Bukkit.createInventory(null, 9, "§2Agriculture");
 				ItemStack wheat = new ItemStack (Material.WHEAT);
 				ItemMeta mWheat = wheat.getItemMeta();
-				mWheat.setDisplayName("§7§l16x blés");
+				mWheat.setDisplayName("§7§l16x Blés");
 				wheat.setItemMeta(mWheat);
 				ItemStack carotte = new ItemStack(Material.CARROT_ITEM);
 				ItemMeta mCarotte = carotte.getItemMeta();
 				mCarotte.setDisplayName("§7§l16x Carottes");
 				carotte.setItemMeta(mCarotte);
+				ItemStack melon = new ItemStack(Material.MELON);
+				ItemMeta mMelon = melon.getItemMeta();
+				mMelon.setDisplayName("§7§l16x Melons");
+				melon.setItemMeta(mMelon);
+				ItemStack seeds = new ItemStack(Material.SEEDS);
+				ItemMeta mSeeds = seeds.getItemMeta();
+				mSeeds.setDisplayName("§7§l16x Graines de blés");
+				seeds.setItemMeta(mSeeds);
 				
 			}
 			
