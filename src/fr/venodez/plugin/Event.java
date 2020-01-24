@@ -42,6 +42,8 @@ public class Event implements Listener {
 				ItemStack wither = Methods.generateItem(Material.SKULL_ITEM, "§7§l3x Tête de Wither skull", 3,  (short) 1);
 				ItemStack soulsand = Methods.generateItem(Material.SOUL_SAND, "§7§l4 Soulsands", 4, (short) 0);
 				ItemStack enderpearl = Methods.generateItem(Material.ENDER_PEARL, "§7§l16 Enderpearls", 16, (short) 0);
+				ItemStack bGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 11);
+				ItemStack rGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 14);
 				gui.setItem(0, bGlass);
 				gui.setItem(1, rGlass);
 				gui.setItem(2, tnt);
@@ -54,7 +56,7 @@ public class Event implements Listener {
 				player.openInventory(gui);
 			}
 		
-			if (item.getType() == Material.SEEDS && item.hasItemMeta() && item.getItemMeta().getDisplayName() == "§bAgriculture") {
+			else if (item.getType() == Material.SEEDS && item.hasItemMeta() && item.getItemMeta().getDisplayName() == "§bAgriculture") {
 				
 				Inventory gui = Bukkit.createInventory(null, 9, "§bAgriculture");
 				ItemStack seed = Methods.generateItem(Material.SEEDS, "§7§l16x Graines", 16, (short) 0);
@@ -75,7 +77,7 @@ public class Event implements Listener {
 				gui.setItem(6, carrot);
 				gui.setItem(7, potato);
 				gui.setItem(8, cactus);
-			}
+			}	
 		}
 	}
 	
