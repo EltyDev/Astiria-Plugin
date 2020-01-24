@@ -1,7 +1,5 @@
 package fr.venodez.plugin;
 
-import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
 
 import org.bukkit.Bukkit;
@@ -25,7 +23,7 @@ public class CommandReset implements CommandExecutor {
 			list.clear();
 			for (Faction faction : FactionColl.get().getAll()) {
 				
-				if (faction.getName() != "WarZone" || faction.getName() != "SafeZone") {
+				if (!(faction.getName() == "WarZone") || !(faction.getName() == "SafeZone")) {
 					
 					faction.detach();
 				}
@@ -38,6 +36,13 @@ public class CommandReset implements CommandExecutor {
 				list.add(player.getName());
 			
 			}
+		}
+		
+		if (cmd.getName().equalsIgnoreCase("sconfig")) {
+			
+			System.out.println(list);
+		
+		
 		}
 		
 		return false;

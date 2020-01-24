@@ -1,8 +1,8 @@
 package fr.venodez.plugin;
 
+import fr.venodez.plugin.Methods;
+
 import org.bukkit.Bukkit;
-import org.bukkit.ChatColor;
-import org.bukkit.DyeColor;
 import org.bukkit.Material;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandExecutor;
@@ -10,10 +10,9 @@ import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
-import org.bukkit.inventory.meta.ItemMeta;
 
 public class CommandShop implements CommandExecutor {
-
+	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		
@@ -23,26 +22,11 @@ public class CommandShop implements CommandExecutor {
 			Inventory gui = Bukkit.createInventory(null, 27, "§eShop");
 			ItemStack bGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 11);
 			ItemStack rGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 14);
-			ItemStack pillage = new ItemStack (Material.TNT);
-			ItemMeta mPillage  = pillage.getItemMeta();
-			mPillage.setDisplayName("§cPillage");
-			pillage.setItemMeta(mPillage);
-			ItemStack agriculture = new ItemStack (Material.SEEDS);
-			ItemMeta mAgriculture  = agriculture.getItemMeta();
-			mAgriculture.setDisplayName("§bAgriculture");
-			agriculture.setItemMeta(mAgriculture);
-			ItemStack alchimie = new ItemStack (Material.POTION, 1, (short) 8229);
-			ItemMeta mAlchimie  = alchimie.getItemMeta();
-			mAlchimie.setDisplayName("§5Alchimie");
-			alchimie.setItemMeta(mAlchimie);
-			ItemStack minerai = new ItemStack (Material.IRON_ORE);
-			ItemMeta mMinerai  = minerai.getItemMeta();
-			mMinerai.setDisplayName("§8Minerai");
-			minerai.setItemMeta(mMinerai);
-			ItemStack spawner = new ItemStack (Material.MOB_SPAWNER);
-			ItemMeta mSpawner  = spawner.getItemMeta();
-			mSpawner.setDisplayName("§eSpawner");
-			spawner.setItemMeta(mSpawner);
+			ItemStack pillage = Methods.generateItem(Material.TNT,"§cPillage",1, (short) 0);
+			ItemStack agriculture = Methods.generateItem(Material.SEEDS,"§bAgriculture",1 ,(short) 0);
+			ItemStack alchimie = Methods.generateItem(Material.POTION, "§5Alchimie", 1, (short) 8229);
+			ItemStack minerai = Methods.generateItem(Material.IRON_ORE, "§8Minerai", 1, (short) 0);
+			ItemStack spawner = Methods.generateItem(Material.MOB_SPAWNER, "§eSpawner", 1, (short) 0);
 			gui.setItem(0, bGlass);
 			gui.setItem(1, rGlass);
 			gui.setItem(2, bGlass);

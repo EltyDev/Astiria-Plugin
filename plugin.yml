@@ -9,4 +9,7 @@ commands:
   shop:
     description: &ePermet d'ouvrir le shop
     permission: shop.use
+  sconfig:
+    description: &ePermet de voir la config
+    permission: sconfig.use
 depend: [Factions]
