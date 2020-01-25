@@ -22,11 +22,11 @@ public class CommandShop implements CommandExecutor {
 			Inventory gui = Bukkit.createInventory(null, 27, "§eShop");
 			ItemStack bGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 11);
 			ItemStack rGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 14);
-			ItemStack pillage = Methods.generateItem(Material.TNT,"§cPillage",1, (short) 0);
-			ItemStack agriculture = Methods.generateItem(Material.SEEDS,"§bAgriculture",1 ,(short) 0);
-			ItemStack alchimie = Methods.generateItem(Material.POTION, "§5Alchimie", 1, (short) 8229);
-			ItemStack minerai = Methods.generateItem(Material.IRON_ORE, "§8Minerai", 1, (short) 0);
-			ItemStack spawner = Methods.generateItem(Material.MOB_SPAWNER, "§eSpawner", 1, (short) 0);
+			ItemStack pillage = Methods.generateItem(Material.TNT,"§cPillage",null ,1, (short) 0);
+			ItemStack agriculture = Methods.generateItem(Material.SEEDS, "§bAgriculture", null, 1, (short) 0);
+			ItemStack alchimie = Methods.generateItem(Material.POTION, "§5Alchimie", null, 1, (short) 8229);
+			ItemStack minerai = Methods.generateItem(Material.IRON_ORE, "§8Minerai", null, 1, (short) 0);
+			ItemStack spawner = Methods.generateItem(Material.MOB_SPAWNER, "§eSpawner", null, 1, (short) 0);
 			gui.setItem(0, bGlass);
 			gui.setItem(1, rGlass);
 			gui.setItem(2, bGlass);

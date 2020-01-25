@@ -16,7 +16,6 @@ public final class Main extends JavaPlugin {
 	
 	@Override
 	public void onEnable() {
-		getCommand("reset").setExecutor(new CommandReset());
 		getCommand("shop").setExecutor(new CommandShop());
 		getServer().getPluginManager().registerEvents(new Event(), this);
 		list = getConfig().getStringList("Cleared Player");
