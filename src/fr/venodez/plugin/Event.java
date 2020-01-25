@@ -242,50 +242,50 @@ public class Event implements Listener {
 				
 				Inventory gui = Bukkit.createInventory(null, 27, "§8Minerai");
 				List<String> description = new ArrayList<>();
-				description.add("§4Achat : §a150000$");
-				description.add("§3Vente : §a50000$");
+				description.add("§4Achat : §a75000$");
+				description.add("§3Vente : §a25000$");
 				description.add("§4Clique gauche §fpour acheter");
 				description.add("§3Clique droit §fpour vendre");
 				ItemStack diam = Methods.generateItem(Material.DIAMOND, "§7§l16x Diamants", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a400000$");
-				description.add(1, "§3Vente : §a150000$");
+				description.add(0, "§4Achat : §a200000$");
+				description.add(1, "§3Vente : §a75000$");
 				ItemStack emerald = Methods.generateItem(Material.EMERALD, "§7§l16x Émeraudes", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a35000$");
-				description.add(1, "§3Vente : §a11500$");
+				description.add(0, "§4Achat : §a17500$");
+				description.add(1, "§3Vente : §a5750$");
 				ItemStack iron = Methods.generateItem(Material.IRON_INGOT, "§7§l16x Fers", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a12500$");
-				description.add(1, "§3Vente : §a4150$");
+				description.add(0, "§4Achat : §a6250$");
+				description.add(1, "§3Vente : §a2075$");
 				ItemStack coal = Methods.generateItem(Material.COAL, "§7§l16x Charbons", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a75000$");
-				description.add(1, "§3Vente : §a25000$");
+				description.add(0, "§4Achat : §a32500$");
+				description.add(1, "§3Vente : §a12500$");
 				ItemStack gold = Methods.generateItem(Material.GOLD_INGOT, "§7§l16x Ors", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a45000$");
-				description.add(1, "§3Vente : §a15000$");
+				description.add(0, "§4Achat : §a22500$");
+				description.add(1, "§3Vente : §a7500$");
 				ItemStack quartz = Methods.generateItem(Material.QUARTZ, "§7§l16x Quartz", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a25000$");
-				description.add(1, "§3Vente : §a8500$");
+				description.add(0, "§4Achat : §a12500$");
+				description.add(1, "§3Vente : §a4250$");
 				ItemStack glowstone = Methods.generateItem(Material.GLOWSTONE_DUST, "§7§l16x Poudres de glowstones", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a65000$");
-				description.add(1, "§3Vente : §a21500$");
+				description.add(0, "§4Achat : §a32500$");
+				description.add(1, "§3Vente : §a10500$");
 				ItemStack prismarine = Methods.generateItem(Material.PRISMARINE_SHARD, "§7§l16x Morceaux de prismarines", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a32500$");
-				description.add(1, "§3Vente : §a11000$");
+				description.add(0, "§4Achat : §a16250");
+				description.add(1, "§3Vente : §a6500$");
 				ItemStack netherbrick = Methods.generateItem(Material.NETHER_BRICK_ITEM, "§7§l16x Briques du nether", description, 16, (short) 0);
 				gui.setItem(0, bGlass);
 				gui.setItem(1, rGlass);
@@ -844,51 +844,6 @@ public class Event implements Listener {
 				
 				if (click == ClickType.LEFT) {
 					
-					Methods.buy(player, 150000, item.getType(), null, (short) 0, 16);
-				
-				}
-				
-				else if (click == ClickType.RIGHT)  {
-					
-					Methods.sale(player, 50000, item.getType(), (short) 0, 16);
-				}
-			
-			}
-			
-			else if (item.getType() == Material.EMERALD) {
-				
-				if (click == ClickType.LEFT) {
-					
-					Methods.buy(player, 400000, item.getType(), null, (short) 0, 16);
-				
-				}
-				
-				else if (click == ClickType.RIGHT)  {
-					
-					Methods.sale(player, 150000, item.getType(), (short) 0, 16);
-				}
-			
-			}
-			
-			else if (item.getType() == Material.IRON_INGOT) {
-				
-				if (click == ClickType.LEFT) {
-					
-					Methods.buy(player, 35000, item.getType(), null, (short) 0, 16);
-				
-				}
-				
-				else if (click == ClickType.RIGHT)  {
-					
-					Methods.sale(player, 11500, item.getType(), (short) 0, 16);
-				}
-			
-			}
-			
-			else if (item.getType() == Material.GOLD_INGOT) {
-				
-				if (click == ClickType.LEFT) {
-					
 					Methods.buy(player, 75000, item.getType(), null, (short) 0, 16);
 				
 				}
@@ -900,67 +855,37 @@ public class Event implements Listener {
 			
 			}
 			
-			else if (item.getType() == Material.COAL) {
+			else if (item.getType() == Material.EMERALD) {
 				
 				if (click == ClickType.LEFT) {
 					
-					Methods.buy(player, 12500, item.getType(), null, (short) 0, 16);
+					Methods.buy(player, 200000, item.getType(), null, (short) 0, 16);
 				
 				}
 				
 				else if (click == ClickType.RIGHT)  {
 					
-					Methods.sale(player, 4150, item.getType(), (short) 0, 16);
+					Methods.sale(player, 75000, item.getType(), (short) 0, 16);
 				}
 			
 			}
 			
-			else if (item.getType() == Material.QUARTZ) {
+			else if (item.getType() == Material.IRON_INGOT) {
 				
 				if (click == ClickType.LEFT) {
-						
-					Methods.buy(player, 45000, item.getType(), null, (short) 0, 16);
+					
+					Methods.buy(player, 17500, item.getType(), null, (short) 0, 16);
 				
 				}
 				
 				else if (click == ClickType.RIGHT)  {
 					
-					Methods.sale(player, 15000, item.getType(), (short) 0, 16);
+					Methods.sale(player, 5750, item.getType(), (short) 0, 16);
 				}
 			
 			}
 			
-			else if (item.getType() == Material.GLOWSTONE_DUST) {
-				
-				if (click == ClickType.LEFT) {
-					
-					Methods.buy(player, 25000, item.getType(), null, (short) 0, 16);
-				
-				}
-				
-				else if (click == ClickType.RIGHT)  {
-					
-					Methods.sale(player, 8500, item.getType(), (short) 0, 16);
-				}
-			
-			}
-			
-			else if (item.getType() == Material.PRISMARINE_SHARD) {
-				
-				if (click == ClickType.LEFT) {
-					
-					Methods.buy(player, 65000, item.getType(), null, (short) 0, 16);
-				
-				}
-				
-				else if (click == ClickType.RIGHT)  {
-					
-					Methods.sale(player, 21500, item.getType(), (short) 0, 16);
-				}
-			
-			}
-			
-			else if (item.getType() == Material.NETHER_BRICK_ITEM) {
+			else if (item.getType() == Material.GOLD_INGOT) {
 				
 				if (click == ClickType.LEFT) {
 					
@@ -970,7 +895,82 @@ public class Event implements Listener {
 				
 				else if (click == ClickType.RIGHT)  {
 					
-					Methods.sale(player, 11000, item.getType(), (short) 0, 16);
+					Methods.sale(player, 12500, item.getType(), (short) 0, 16);
+				}
+			
+			}
+			
+			else if (item.getType() == Material.COAL) {
+				
+				if (click == ClickType.LEFT) {
+					
+					Methods.buy(player, 6250, item.getType(), null, (short) 0, 16);
+				
+				}
+				
+				else if (click == ClickType.RIGHT)  {
+					
+					Methods.sale(player, 2075, item.getType(), (short) 0, 16);
+				}
+			
+			}
+			
+			else if (item.getType() == Material.QUARTZ) {
+				
+				if (click == ClickType.LEFT) {
+						
+					Methods.buy(player, 22500, item.getType(), null, (short) 0, 16);
+				
+				}
+				
+				else if (click == ClickType.RIGHT)  {
+					
+					Methods.sale(player, 7500, item.getType(), (short) 0, 16);
+				}
+			
+			}
+			
+			else if (item.getType() == Material.GLOWSTONE_DUST) {
+				
+				if (click == ClickType.LEFT) {
+					
+					Methods.buy(player, 12500, item.getType(), null, (short) 0, 16);
+				
+				}
+				
+				else if (click == ClickType.RIGHT)  {
+					
+					Methods.sale(player, 4250, item.getType(), (short) 0, 16);
+				}
+			
+			}
+			
+			else if (item.getType() == Material.PRISMARINE_SHARD) {
+				
+				if (click == ClickType.LEFT) {
+					
+					Methods.buy(player, 32500, item.getType(), null, (short) 0, 16);
+				
+				}
+				
+				else if (click == ClickType.RIGHT)  {
+					
+					Methods.sale(player, 10500, item.getType(), (short) 0, 16);
+				}
+			
+			}
+			
+			else if (item.getType() == Material.NETHER_BRICK_ITEM) {
+				
+				if (click == ClickType.LEFT) {
+					
+					Methods.buy(player, 16250, item.getType(), null, (short) 0, 16);
+				
+				}
+				
+				else if (click == ClickType.RIGHT)  {
+					
+					Methods.sale(player, 6500, item.getType(), (short) 0, 16);
 				}
 			
 			}
