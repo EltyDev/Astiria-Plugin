@@ -1,5 +1,6 @@
 package fr.venodez.plugin;
 
+import org.bukkit.BanList;
 import org.bukkit.BanList.Type;
 import org.bukkit.Bukkit;
 import org.bukkit.command.Command;
@@ -28,19 +29,20 @@ public class CommandBan implements CommandExecutor {
 					player.sendMessage("§cIl faut donner une raison");
 				}
 				
-				else if (args.length == 2) {
+				else if (args.length >= 2) {
 					
 					target.getWorld().strikeLightning(target.getLocation());
-					Bukkit.getBanList(Type.NAME).addBan(args[0], args[1], null, null);
-					String message = "§e§l[Modération] §r§c" + args[0] + " §6s'est fait ban par §5§l" + player.getName() + " §r§6pour §c" + args[1];
+					String raison = null;
+					for (int i = 1; i == args.length; i++) {
+						
+						raison += args[i];
+							
+					}
+					Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(args[0], raison, null, null);
+					String message = "§e§l[Modération] §r§c" + args[0] + " §6s'est fait ban par §5§l" + player.getName() + " §r§6pour §c" + raison;
 					Bukkit.broadcastMessage(String.format(message));
 					
-				}
-				
-				else {
-					
-					player.sendMessage("§cVous avez trop donnés d'arguments");
-				}
+				} 
 			}
 			
 			else {
