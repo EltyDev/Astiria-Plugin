@@ -15,7 +15,6 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
-import org.bukkit.event.player.PlayerJoinEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -1060,20 +1059,6 @@ public class Event implements Listener {
 		
 		}
 	
-	}
-	
-	@EventHandler
-	public void onJoin(PlayerJoinEvent event) {
-		
-		List<String> list = Main.getFrozen();
-		Player player = event.getPlayer();
-		System.out.println(list);
-		if (!list.contains(player.getName())) {
-			
-			player.getInventory().clear();
-			player.updateInventory();
-			list.add(player.getName());
-		}
 	}
 	
 	@EventHandler
