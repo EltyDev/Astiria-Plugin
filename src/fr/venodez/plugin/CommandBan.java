@@ -10,8 +10,6 @@ import org.bukkit.entity.Player;
 
 public class CommandBan implements CommandExecutor {
 	
-	public String raison;
-	
 	@Override
 	public boolean onCommand(CommandSender sender, Command cmd, String msg, String[] args) {
 		
@@ -20,6 +18,7 @@ public class CommandBan implements CommandExecutor {
 			if (sender instanceof Player) {
 				
 				Player player = (Player) sender;
+				String raison = "";
 				if (args.length == 0) {
 					
 					player.sendMessage("§cIl faut donner un joueur");
@@ -31,18 +30,30 @@ public class CommandBan implements CommandExecutor {
 				}
 				
 				else if (args.length >= 2) {	
-
-					Player target = Bukkit.getServer().getPlayer(args[0]);
-					target.getWorld().strikeLightning(target.getLocation());
-					for (int i = 1; i == args.length; i++) {
+					
+					try {
 						
-						raison += args[i];
+						Bukkit.getServer().getPlayerExact(args[0]);
+						Bukkit.getServer().getPlayerExact(args[0]).getWorld().strikeLightning(Bukkit.getServer().getPlayerExact(args[0]).getLocation());
+					}
+					
+					catch (NullPointerException error) {
+						
+						player.sendMessage("§cLe Joueur n'est pas connecté");
+						return false;
+						
+					}
+					
+					Player target = Bukkit.getServer().getPlayerExact(args[0]);
+					target.getWorld().strikeLightning(target.getLocation());
+					for (int i = 1; i < args.length; i++) {
+						
+						raison += args[i] + " ";
 							
 					}
 					
-					
 					String pMessage = "§cVous avez été bannis du serveur" + "\n" + "§7Raison : §f" + raison + "\n" + "§7Par : §f" + player.getName();
-					Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(args[0], raison, null, null);
+					Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(target.getName(), pMessage, null, player.getName());
 					target.kickPlayer(pMessage);
 					String bMessage = "§e§l[Modération] §r§c" + args[0] + " §6s'est fait ban par §5§l" + player.getName() + " §r§6pour §c" + raison;
 					Bukkit.broadcastMessage(String.format(bMessage));
@@ -53,6 +64,7 @@ public class CommandBan implements CommandExecutor {
 			else {
 				
 				ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+				String raison = "";
 				if (args.length == 0) {
 					
 					console.sendMessage("§cIl faut donner un joueur");
@@ -65,20 +77,33 @@ public class CommandBan implements CommandExecutor {
 				
 				else if (args.length >= 2) {	
 					
-					Player target = Bukkit.getServer().getPlayer(args[0]);
+					try {
+					
+						Bukkit.getServer().getPlayer(args[0]);
+						Bukkit.getServer().getPlayerExact(args[0]).getWorld().strikeLightning(Bukkit.getServer().getPlayerExact(args[0]).getLocation());
+					}
+					
+					catch (NullPointerException error) {
+						
+						console.sendMessage("§cLe joueur n'est pas connecté");
+						return false;
+						
+					}
+					
+					Player target = Bukkit.getServer().getPlayerExact(args[0]);
 					target.getWorld().strikeLightning(target.getLocation());
-					for (int i = 1; i == args.length; i++) {
+					for (int i = 1; i < args.length; i++) {
 						
 						raison += args[i];
 							
 					}
 					
 					String pMessage = "§cVous avez été bannis du serveur" + "\n" + "§7Raison : §f" + raison + "\n" + "§7Par :§f Console";
-					Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(args[0], raison, null, null);
+					Bukkit.getServer().getBanList(BanList.Type.NAME).addBan(target.getName(), pMessage, null, "Console");
 					target.kickPlayer(pMessage);
 					String message = "§e§l[Modération] §r§c" + args[0] + " §6s'est fait ban par la §5§lconsole §r§6pour §c" + raison;
 					Bukkit.broadcastMessage(String.format(message));
-
+					
 				}
 			
 			}

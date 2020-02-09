@@ -9,3 +9,6 @@ commands:
   aban:
     description: &ePermet de ban
     permission: aban.use
+  boutique:
+    description: &ePermet d'ouvrir la boutique
+    permission: boutique.use

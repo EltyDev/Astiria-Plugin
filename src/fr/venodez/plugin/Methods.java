@@ -87,5 +87,7 @@ public class Methods {
 			String fMessage = message + sItem;
 			player.sendMessage(String.format(fMessage));
 		}
+	
 	}
+
 }

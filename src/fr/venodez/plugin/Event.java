@@ -4,30 +4,43 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.venodez.plugin.Methods;
+import ru.tehkode.permissions.PermissionManager;
+import ru.tehkode.permissions.PermissionUser;
+import ru.tehkode.permissions.bukkit.PermissionsEx;
 
+import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
+import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
+import org.bukkit.event.EventPriority;
 import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerLoginEvent;
+import org.bukkit.event.player.PlayerLoginEvent.Result;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
 
+import com.earth2me.essentials.api.Economy;
 import com.earth2me.essentials.api.NoLoanPermittedException;
 import com.earth2me.essentials.api.UserDoesNotExistException;
 
 public class Event implements Listener {
-		
+	
+	public PermissionManager pexapi = PermissionsEx.getPermissionManager();
 	public ItemStack bGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 11);
 	public ItemStack rGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 14);
+	public ItemStack oGlass = Methods.generateItem(Material.STAINED_GLASS_PANE, null, null, 1, (short) 1);
+	public ItemStack yGlass = Methods.generateItem(Material.STAINED_GLASS_PANE, null, null, 1, (short) 4);
 	public ItemStack back = Methods.generateItem(Material.BED, "§4Sortir", null, 1, (short) 0);
 	
+	@SuppressWarnings("deprecation")
 	@EventHandler
 	public void onClick(InventoryClickEvent event) throws NoLoanPermittedException, IllegalArgumentException, UserDoesNotExistException {
 		
@@ -278,26 +291,26 @@ public class Event implements Listener {
 				ItemStack glowstone = Methods.generateItem(Material.GLOWSTONE_DUST, "§7§l16x Poudres de glowstones", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a32500$");
-				description.add(1, "§3Vente : §a10500$");
-				ItemStack prismarine = Methods.generateItem(Material.PRISMARINE_SHARD, "§7§l16x Morceaux de prismarines", description, 16, (short) 0);
+				description.add(0, "§4Achat : §a7500$");
+				description.add(1, "§3Vente : §a2500$");
+				ItemStack redstone = Methods.generateItem(Material.REDSTONE, "§7§l16x Redstone", description, 16, (short) 0);
 				description.remove(0);
 				description.remove(0);
-				description.add(0, "§4Achat : §a16250");
-				description.add(1, "§3Vente : §a6500$");
-				ItemStack netherbrick = Methods.generateItem(Material.NETHER_BRICK_ITEM, "§7§l16x Briques du nether", description, 16, (short) 0);
+				description.add(0, "§4Achat : §a7500$");
+				description.add(1, "§3Vente : §a2500$");
+				ItemStack lapis = Methods.generateItem(Material.INK_SACK, "§7§l16x Lapis lazuli", description, 16, (short) 4);
 				gui.setItem(0, bGlass);
 				gui.setItem(1, rGlass);
 				gui.setItem(2, quartz);
 				gui.setItem(3, rGlass);
-				gui.setItem(4, netherbrick);
+				gui.setItem(4, lapis);
 				gui.setItem(5, rGlass);
 				gui.setItem(6, glowstone);
 				gui.setItem(7, rGlass);
 				gui.setItem(8, bGlass);
 				gui.setItem(9, rGlass);
 				gui.setItem(10, bGlass);
-				gui.setItem(11, prismarine);
+				gui.setItem(11, redstone);
 				gui.setItem(12, bGlass);
 				gui.setItem(13, coal);
 				gui.setItem(14, bGlass);
@@ -944,32 +957,32 @@ public class Event implements Listener {
 			
 			}
 			
-			else if (item.getType() == Material.PRISMARINE_SHARD) {
+			else if (item.getType() == Material.REDSTONE) {
 				
 				if (click == ClickType.LEFT) {
 					
-					Methods.buy(player, 32500, item.getType(), null, (short) 0, 16);
+					Methods.buy(player, 7500, item.getType(), null, (short) 0, 16);
 				
 				}
 				
 				else if (click == ClickType.RIGHT)  {
 					
-					Methods.sale(player, 10500, item.getType(), (short) 0, 16);
+					Methods.sale(player, 2500, item.getType(), (short) 0, 16);
 				}
 			
 			}
 			
-			else if (item.getType() == Material.NETHER_BRICK_ITEM) {
+			else if (item.getType() == Material.INK_SACK) {
 				
 				if (click == ClickType.LEFT) {
 					
-					Methods.buy(player, 16250, item.getType(), null, (short) 0, 16);
+					Methods.buy(player, 7500, item.getType(), null, (short) 4, 16);
 				
 				}
 				
 				else if (click == ClickType.RIGHT)  {
 					
-					Methods.sale(player, 6500, item.getType(), (short) 0, 16);
+					Methods.sale(player, 2500, item.getType(), (short) 0, 16);
 				}
 			
 			}
@@ -1058,6 +1071,152 @@ public class Event implements Listener {
 			}
 		
 		}
+		
+		else if (inventory.getName().equalsIgnoreCase("§bBoutique")) {
+			
+			event.setCancelled(true);	
+			if (item.getType() == Material.GOLD_BLOCK) {
+				
+				Inventory gui = Bukkit.createInventory(null, 27, "§eGrades");
+				List<String> description = new ArrayList<>();
+				description.add("§4Achat : §a75000000$");
+				description.add("§4Clique gauche §fpour acheter");
+				ItemStack chevalier = Methods.generateItem(Material.IRON_BARDING, "§9Chevalier", null, 1, (short) 0);
+				description.remove(0);
+				description.add(0,"§4Achat : §a300000000$");
+				ItemStack seigneur = Methods.generateItem(Material.GOLD_BARDING, "§aSeigneur", null, 1, (short) 0);
+				description.remove(0);
+				description.add(0,"§4Achat : §a1800000000$");
+				ItemStack empereur = Methods.generateItem(Material.DIAMOND_BARDING, "§6Empereur", null, 1, (short) 0);
+				gui.setItem(0, oGlass);
+				gui.setItem(1, yGlass);
+				gui.setItem(2, oGlass);
+				gui.setItem(3, yGlass);
+				gui.setItem(4, oGlass);
+				gui.setItem(5, yGlass);
+				gui.setItem(6, oGlass);
+				gui.setItem(7, yGlass);
+				gui.setItem(8, oGlass);
+				gui.setItem(9, yGlass);
+				gui.setItem(10, oGlass);
+				gui.setItem(11, chevalier);
+				gui.setItem(12, oGlass);
+				gui.setItem(13, seigneur);
+				gui.setItem(14, oGlass);
+				gui.setItem(15, empereur);
+				gui.setItem(16, oGlass);
+				gui.setItem(17, yGlass);
+				gui.setItem(18, oGlass);
+				gui.setItem(19, yGlass);
+				gui.setItem(20, oGlass);
+				gui.setItem(21, yGlass);
+				gui.setItem(22, oGlass);
+				gui.setItem(23, yGlass);
+				gui.setItem(24, oGlass);
+				gui.setItem(25, yGlass);
+				gui.setItem(26, oGlass);
+				player.openInventory(gui);
+				
+			}
+			
+		}
+		
+		else if (inventory.getName().equalsIgnoreCase("§eGrades")) {
+			
+			ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
+			event.setCancelled(true);
+			
+			if (item.getType() == Material.IRON_BARDING) {
+				
+				PermissionUser user = pexapi.getUser(player);
+				if (user.inGroup("default")) {
+					
+					if (Economy.hasEnough(player.getName(), 75000000)) {
+						
+						user.addGroup("chevalier");
+						Economy.subtract(player.getName(), 75000000);
+						player.closeInventory();
+						player.sendMessage("§2Vous avez acheté le grade §9Chevalier");
+					
+					}
+					
+					else {
+						
+						player.sendMessage("§cTu n'a pas assez d'argent");
+						
+					}
+				
+				}
+				
+				else {
+					
+					player.sendMessage("§cTu as déjà un grade supérieur");
+					
+				}
+				
+			}
+			
+			else if (item.getType() == Material.GOLD_BARDING) {
+				
+				PermissionUser user = pexapi.getUser(player);
+				if (user.inGroup("default") || user.inGroup("chevalier")) {
+					
+					if (Economy.hasEnough(player.getName(), 300000000)) {
+						
+						user.addGroup("seigneur");
+						Economy.subtract(player.getName(), 300000000);
+						player.closeInventory();
+						player.sendMessage("§2Vous avez acheté le grade §aSeigneur");
+						
+					}
+					
+					else {
+						
+						player.sendMessage("§cTu n'a pas assez d'argent");
+						
+					}
+				
+				}
+				
+				else {
+					
+					player.sendMessage("§cTu as déjà un grade supérieur");
+				
+				}
+				
+			}
+			
+			else if (item.getType() == Material.DIAMOND_BARDING) {
+				
+				PermissionUser user = pexapi.getUser(player);
+				if (user.inGroup("default") || user.inGroup("chevalier") || user.inGroup("seigneur")) {
+					
+					if (Economy.hasEnough(player.getName(), 1800000000)) {
+						
+						user.addGroup("empereur");
+						Economy.subtract(player.getName(), 1800000000);
+						player.closeInventory();
+						player.sendMessage("§2Vous avez acheté le grade §6Empereur");
+					
+					}
+					
+					else {
+						
+						player.sendMessage("§cTu n'a pas assez d'argent");
+						
+					}
+				
+				}
+				
+				else {
+					
+					player.sendMessage("§cTu as déjà un grade supérieur");
+				
+				}
+				
+			}
+			
+		}
 	
 	}
 	
@@ -1089,5 +1248,27 @@ public class Event implements Listener {
 			}	
     
 		}
+	
 	}
+	
+	@EventHandler(priority = EventPriority.HIGH)
+	public void OnPlayerJoin(PlayerLoginEvent event) {
+		
+		if (event.getResult() == Result.KICK_BANNED) {
+			
+			Player player = event.getPlayer();
+			if (Bukkit.getServer().getBanList(BanList.Type.NAME).isBanned(player.getName()) == true) {
+				
+				String message = Bukkit.getServer().getBanList(BanList.Type.NAME).getBanEntry(player.getName()).getReason();
+				if (Bukkit.getServer().getBanList(BanList.Type.NAME).getBanEntry(player.getName()).getExpiration() == null) {
+					
+					event.setKickMessage(message);
+				}
+			
+			}
+		
+		}
+		
+	}
+	
 }
