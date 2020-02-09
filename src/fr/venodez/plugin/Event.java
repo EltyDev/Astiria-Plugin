@@ -12,7 +12,6 @@ import org.bukkit.BanList;
 import org.bukkit.Bukkit;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
-import org.bukkit.command.ConsoleCommandSender;
 import org.bukkit.entity.EntityType;
 import org.bukkit.entity.Player;
 import org.bukkit.event.EventHandler;
@@ -1123,7 +1122,6 @@ public class Event implements Listener {
 		
 		else if (inventory.getName().equalsIgnoreCase("§eGrades")) {
 			
-			ConsoleCommandSender console = Bukkit.getServer().getConsoleSender();
 			event.setCancelled(true);
 			
 			if (item.getType() == Material.IRON_BARDING) {
