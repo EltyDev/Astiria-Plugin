@@ -88,6 +88,7 @@ public class Methods {
 			player.sendMessage(String.format(fMessage));
 		}
 	
+		
 	}
 
 }

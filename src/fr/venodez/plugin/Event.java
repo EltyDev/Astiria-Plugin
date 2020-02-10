@@ -4,12 +4,15 @@ import java.util.ArrayList;
 import java.util.List;
 
 import fr.venodez.plugin.Methods;
+import fr.venodez.plugin.CommandMod;
+
 import ru.tehkode.permissions.PermissionManager;
 import ru.tehkode.permissions.PermissionUser;
 import ru.tehkode.permissions.bukkit.PermissionsEx;
 
 import org.bukkit.BanList;
 import org.bukkit.Bukkit;
+import org.bukkit.GameMode;
 import org.bukkit.Material;
 import org.bukkit.block.Block;
 import org.bukkit.entity.EntityType;
@@ -20,8 +23,11 @@ import org.bukkit.event.Listener;
 import org.bukkit.event.block.BlockPlaceEvent;
 import org.bukkit.event.inventory.ClickType;
 import org.bukkit.event.inventory.InventoryClickEvent;
+import org.bukkit.event.player.PlayerInteractEntityEvent;
 import org.bukkit.event.player.PlayerLoginEvent;
 import org.bukkit.event.player.PlayerLoginEvent.Result;
+import org.bukkit.event.player.PlayerMoveEvent;
+import org.bukkit.event.player.PlayerQuitEvent;
 import org.bukkit.inventory.Inventory;
 import org.bukkit.inventory.ItemStack;
 import org.bukkit.inventory.meta.ItemMeta;
@@ -32,12 +38,14 @@ import com.earth2me.essentials.api.UserDoesNotExistException;
 
 public class Event implements Listener {
 	
+	public ArrayList<Player> freezeList;
 	public PermissionManager pexapi = PermissionsEx.getPermissionManager();
 	public ItemStack bGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 11);
 	public ItemStack rGlass = new ItemStack (Material.STAINED_GLASS_PANE, 1, (short) 14);
 	public ItemStack oGlass = Methods.generateItem(Material.STAINED_GLASS_PANE, null, null, 1, (short) 1);
 	public ItemStack yGlass = Methods.generateItem(Material.STAINED_GLASS_PANE, null, null, 1, (short) 4);
 	public ItemStack back = Methods.generateItem(Material.BED, "§4Sortir", null, 1, (short) 0);
+	public CommandMod cM = new CommandMod();
 	
 	@SuppressWarnings("deprecation")
 	@EventHandler
@@ -1250,7 +1258,7 @@ public class Event implements Listener {
 	}
 	
 	@EventHandler(priority = EventPriority.HIGH)
-	public void OnPlayerJoin(PlayerLoginEvent event) {
+	public void onPlayerJoin(PlayerLoginEvent event) {
 		
 		if (event.getResult() == Result.KICK_BANNED) {
 			
@@ -1269,4 +1277,76 @@ public class Event implements Listener {
 		
 	}
 	
+	@EventHandler
+	public void OnPlayerQuit(PlayerQuitEvent event) {
+		
+		Player player = event.getPlayer();
+		
+		if (cM.saveInv.containsKey(player)) {
+			
+			ItemStack[] inv = cM.saveInv.get(player);
+			ItemStack[] armor = cM.saveArmor.get(player);
+			GameMode gm = cM.saveGamemode.get(player);
+			cM.saveInv.remove(player);
+			cM.saveArmor.remove(player);
+			cM.saveGamemode.remove(player);
+			int n = 0;
+			for (ItemStack item : inv) {
+				
+				player.getInventory().setItem(n, item);
+				n += 1;
+				
+			}
+			
+			player.getInventory().setArmorContents(armor);
+			player.setGameMode(gm);
+			for (Player all : Bukkit.getServer().getOnlinePlayers()) {
+				
+				all.showPlayer(player);
+				
+		
+			}
+	
+		}
+
+	}
+	
+	@EventHandler
+	public void onRightClick(PlayerInteractEntityEvent event) {
+		
+		Player player = event.getPlayer();
+		ItemStack tool = player.getItemInHand();
+		
+		if (tool.getType() == Material.PACKED_ICE && tool.getItemMeta().getDisplayName().equalsIgnoreCase("§bFreeze")) {
+		
+			if (event.getRightClicked() instanceof Player) {
+			
+				if (freezeList.contains(player)) {
+				
+					freezeList.remove(player);
+				}
+			
+				else {
+				
+					freezeList.add(player);
+				}
+		
+			}
+			
+		}
+	
+	}
+
+	public void onMove(PlayerMoveEvent event) {
+		
+		Player player = event.getPlayer();
+		
+		if (freezeList.contains(player)) {
+			
+			event.setCancelled(true);
+			
+		}
+	
+	}
+
 }

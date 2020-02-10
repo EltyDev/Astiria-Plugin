@@ -12,3 +12,6 @@ commands:
   boutique:
     description: &ePermet d'ouvrir la boutique
     permission: boutique.use
+  mod:
+    description: &ePermet d'avoir les items de modération
+    permission: mod.use
