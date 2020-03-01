@@ -1,2 +1,2 @@
-# Astiria-Plugin
+# Ancien Astiria-Plugin
 Plugin pour le serveur PvP-Faction Astiria 
